@@ -16,14 +16,8 @@ Used Djisktra Algorithim without overcomplicating the process to find the shorte
 ---------------
 Commands are in sequential order in order to setup the project successfully. should be processed in this projects root directory. 
 ```
-docker build -t hyperspace .
-docker pull mongo
-docker network create space-travels
-docker container run -d --name mongodb -p 27017:27017 --network space-travels mongo:latest
-docker container run --name hyperspace -d -p 5000:5000 --network space-travels hyperspace
-docker network inspect space-travels
+docker-compose up -d
 ```
-
 
 [Postman API documentation Link](https://documenter.getpostman.com/view/12223839/2s93z6ejh7)
 

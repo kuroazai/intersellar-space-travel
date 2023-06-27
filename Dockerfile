@@ -13,6 +13,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the project files to the working directory
 COPY . .
 
+# Copy the code to prepare enviroment
+COPY prepare_environment.py .
+
 # Flask App
 ENV FLASK_APP=app.py
 
@@ -20,4 +23,4 @@ ENV FLASK_APP=app.py
 EXPOSE 5000
 
 # Specify the command to run your API script
-CMD ["flask", "run", "--host", "0.0.0.0"]
+CMD python prepare_environment.py && flask run --host 0.0.0.0

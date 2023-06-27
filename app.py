@@ -73,14 +73,17 @@ class Accelerators(Resource):
 
 class GetAccelerator(Resource):
     def get(self, accelerator_id) -> str:
-        return stargate.get_graph_node(accelerator_id)
+        data = stargate.get_graph_node(accelerator_id)
+        if not data:
+            return {"message": "Accelerator not found"}, 404
+        return data
 
 class GetShortestRoute(Resource):
     def get(self, start, end ) -> str:
         output = stargate.find_journey(start.upper(), end.upper())
         if not output:
             return {"message": "No route found"}, 404
-        return {"distance": output[0], "path": output[1]}
+        return {"distance": output[0], "path": output[1], 'cost': output[0] * 0.1}
 
 
 def get_cheapest_vehicle(data: dict):
